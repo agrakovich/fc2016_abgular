@@ -16,7 +16,11 @@ const Article = new Schema({
     text: { type: String, required: true },
     //images: [Images],
     dateCreated: { type: Date, default: Date.now },
-    dateModified: { type: Date, default: Date.now }
+    dateModified: { type: Date, default: Date.now },
+});
+
+Article.virtual('slug').get(function () {
+    return this.id;
 });
 
 module.exports = mongoose.model('Article', Article);;

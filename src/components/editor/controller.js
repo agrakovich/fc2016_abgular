@@ -3,8 +3,8 @@ class EditorCtrl {
     constructor(ArticleService, article, $state) {
         "ngInject";
 
-        this._ArticleService = ArticleService;
-        this._$state = $state;
+        this.ArticleService = ArticleService;
+        this.$state = $state;
 
         if (!article) {
             this.article = {
@@ -20,12 +20,10 @@ class EditorCtrl {
     submit() {
         this.isSubmitting = true;
 
-        this._ArticleService.save(this.article)
-            .then(newArticle => this._$state.go("app.article", {slug: newArticle.slug}))
-            .catch(err => {
-                this.isSubmitting = false;
-                this.errors = err.data.errors;
-            });
+        this.ArticleService.save(this.article)
+            .then(newArticle => this.$state.go("app.article", {id: newArticle._id}))
+            .catch(err => this.errors = err.data.errors )
+            .finally(() => this.isSubmitting = false );
     };
 
 };

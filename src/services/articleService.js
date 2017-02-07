@@ -1,41 +1,41 @@
 import config from '../config'
 
-export default class ArticleServices {
+export default class ArticleService {
 
     constructor($http, $q) {
         'ngInject';
 
-        this._$http = $http;
-        this._$q = $q;
+        this.$http = $http;
+        this.$q = $q;
     };
 
     save(article) {
         const request = {};
 
-        if (article.slug) {
-            request.url = `${config.apiUrl}/${config.articlesRoute}/${article.slug}`;
+        if (article._id) {
+            request.url = `${config.apiUrl}${config.articlesRoute}/${article._id}`;
             request.method = 'PUT';
-            delete article.slug;
+            delete article._id;
         } else {
-            request.url = `${config.apiUrl}/${config.articlesRoute}`;
+            request.url = `${config.apiUrl}${config.articlesRoute}`;
             request.method = 'POST';
         }
 
-        request.data = { article };
-        return this._$http(request)
+        request.data = { ...article };
+        return this.$http(request)
             .then(res => res.data.article);
     };
 
-    get(slug) {
-        const deferred = this._$q.defer();
+    get(id) {
+        const deferred = this.$q.defer();
 
-        if (!slug.replace(' ', '')) {
-            deferred.reject('Article slug is empty');
+        if (!id.replace(' ', '')) {
+            deferred.reject('Article id is empty');
             return deferred.promise;
         }
 
-        this._$http({
-            url: `${config.apiUrl}/${config.articlesRoute}/${slug}`,
+        this.$http({
+            url: `${config.apiUrl}${config.articlesRoute}/${id}`,
             method: 'GET'
         })
         .then(res => deferred.resolve(res.data.article))
@@ -44,20 +44,20 @@ export default class ArticleServices {
         return deferred.promise;
     };
 
-    delete(slug) {
-        return this._$http({
-            url: `${config.apiUrl}/${config.articlesRoute}/${slug}`,
+    delete(id) {
+        return this.$http({
+            url: `${config.apiUrl}${config.articlesRoute}/${id}`,
             method: 'DELETE'
         });
     };
 
     query(params) {
         const request = {
-            url: `${config.apiUrl}/${config.articlesRoute}`,
+            url: `${config.apiUrl}${config.articlesRoute}`,
             method: 'GET',
             params: params.filters ? params.filters : null
         };
-        return this._$http(request).then((res) => res.data);
+        return this.$http(request).then((res) => res.data);
     };
 
 };

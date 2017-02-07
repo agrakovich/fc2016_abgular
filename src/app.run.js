@@ -2,6 +2,7 @@ const AppRun = ($rootScope) => {
     "ngInject";
 
     $rootScope.$on("$stateChangeSuccess", (event, toState) => $rootScope.setPageTitle(toState.title));
+    $rootScope.$on("$stateChangeError", console.log.bind(console));
 
     $rootScope.setPageTitle = (title) => {
         $rootScope.pageTitle = "";

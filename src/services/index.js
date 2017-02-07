@@ -1,8 +1,8 @@
 import angular from "angular";
-import ArticlesService from "./articleService";
+import ArticleService from "./articleService";
 
 const servicesModule = angular.module("app.services", []);
 
-servicesModule.service("Articles", ArticlesService);
+servicesModule.service("ArticleService", ArticleService);
 
 export default servicesModule;

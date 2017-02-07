@@ -4,39 +4,54 @@ const ArticleModel = require('../models/article');
 const articleRoutes = express.Router();
 
 articleRoutes.get('/', function(req, res) {
-    return ArticleModel.find(function (err, articles) {
-        if (!err) {
-            return res.send(articles);
-        } else {
+    let isError = false;
+    let articlesCount = 0;
+    let articles = [];
+
+    var query = ArticleModel.find({});
+    query.count(function(err, count) {
+        if (err) {
             res.statusCode = 500;
-            //log.error('Internal error(%d): %s',res.statusCode,err.message);
+            return res.send({ error: 'Server error' });
+        } else {
+            articlesCount = count;
+        }
+    });
+    query.skip(req.offset).limit(req.limit).exec('find', function(err, data) {
+        articles = data;
+        if(isError){
+            res.statusCode = 500;
             return res.send({ error: 'Server error' });
         }
+
+        return res.send({
+            articlesCount,
+            articles
+        });
     });
 });
 
-articleRoutes.post('/', function(req, res) {
+articleRoutes.post('/', function(req, res, next) {
+
     const article = new ArticleModel({
         title: req.body.title,
         author: req.body.author,
         text: req.body.text,
-        images: req.body.images
     });
 
-    article.save(function (err) {
+    article.save(function (err, article) {
         if (!err) {
-            //log.info("article created");
-            return res.send({ status: 'OK', article:article });
+            console.log(article);
+            return res.send({ status: 'OK', article: article });
         } else {
             console.log(err);
             if(err.name == 'ValidationError') {
                 res.statusCode = 400;
-                res.send({ error: 'Validation error' });
+                next('Validation error');
             } else {
                 res.statusCode = 500;
-                res.send({ error: 'Server error' });
+                next('Server error');
             }
-            //log.error('Internal error(%d): %s',res.statusCode,err.message);
         }
     });
 });

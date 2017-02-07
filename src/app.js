@@ -4,12 +4,14 @@ import appConfig from './app.config';
 import 'angular-ui-router';
 import './components/editor'
 import './components/article-list'
+import './components/article'
 import './services'
 
 const requires = [
     'ui.router',
-    'app.article',
     'app.services',
+    'app.article',
+    'app.article-list',
     'app.editor'
 ];
 

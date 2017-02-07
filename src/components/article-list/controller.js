@@ -3,7 +3,7 @@ export default class ArticleListCtrl {
     constructor(ArticleService, $scope) {
         "ngInject";
 
-        this._ArticleService = ArticleService;
+        this.ArticleService = ArticleService;
         this.setListTo(this.listConfig);
 
         $scope.$on("setPageTo", (ev, pageNumber) => this.setPageTo(pageNumber));
@@ -12,7 +12,7 @@ export default class ArticleListCtrl {
 
     setListTo(newList) {
         this.articles = [];
-        this.listConfig = newList;
+        this.listConfig = newList || {};
         this.runQuery();
     };
 
@@ -25,16 +25,21 @@ export default class ArticleListCtrl {
         this.loading = true;
 
         const queryConfig = {
-            type: this.listConfig.type,
+            //type: this.listConfig.type,
             filters: this.listConfig.filters || {}
         };
 
-        if (!this.listConfig.currentPage) this.listConfig.currentPage = 1;
+        if (!this.listConfig.currentPage) {
+            this.listConfig.currentPage = 1;
+        }
 
+        if (!this.limit) {
+            this.limit = 10;
+        }
         queryConfig.filters.offset = (this.limit * (this.listConfig.currentPage - 1));
         queryConfig.filters.limit = this.limit;
 
-        this._ArticleService.query(queryConfig)
+        this.ArticleService.query(queryConfig)
             .then(res => {
                 this.loading = false;
                 this.articles = res.articles;
