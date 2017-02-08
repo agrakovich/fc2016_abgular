@@ -28,10 +28,7 @@ const EditorConfig = $stateProvider => {
                 <p ng-show="articleForm.text.$invalid && !articleForm.text.$pristine">Article text is required!</p>
             </label>
         </fieldset>
-        <button type="button" ng-disabled="articleForm.$invalid" ng-click="$ctrl.submit()">Publish</button>
-        <a ui-sref="app.article-list">
-            Home
-        </a>
+        <button type="button" ng-disabled="articleForm.$invalid" ng-click="$ctrl.submit()">Publish</button>    
     </fieldset>
 </form>`,
         title: "Editor",

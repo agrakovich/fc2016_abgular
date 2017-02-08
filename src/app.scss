@@ -1,7 +1,12 @@
 @import "bourbon";
 @import "neat";
 
-
+header{
+  height: 40px;
+}
+fieldset{
+  border: none;
+}
 .image-gradient-dynamic {
   $image-gradient-color-top: red;
   $transparency-top: 0.9;
@@ -71,4 +76,3 @@
     }
   }
 }
-
