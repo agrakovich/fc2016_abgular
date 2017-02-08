@@ -53,6 +53,7 @@ app.get('/auth', function(req, res) {
 app.use(function(req, res, next){
     res.status(404);
     console.log(`Not found URL: ${req.url}`);
+    //res.sendFile(path.join(__dirname, '..', '404.html'));
     res.send({ error: 'Not found' });
     return;
 });
@@ -60,7 +61,7 @@ app.use(function(req, res, next){
 app.use(function(err, req, res, next){
     res.status(err.status || 500);
     console.log(`Internal error(${res.statusCode} : ${err.message}`);
-    res.send({ error: err.message });
+    res.sendFile(path.join(__dirname, '..', '500.html'));
     return;
 });
 

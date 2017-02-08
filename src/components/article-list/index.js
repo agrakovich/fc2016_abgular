@@ -3,7 +3,7 @@ import ArticleListConfig from './config';
 import ArticleListCtrl from './controller';
 import ListPagination from '../pagination';
 import ArticlePreview from '../article-preview';
-
+import './styles.scss'
 
 const articleListModule = angular.module('app.article-list', []);
 

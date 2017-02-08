@@ -21,7 +21,7 @@ class EditorCtrl {
         this.isSubmitting = true;
 
         this.ArticleService.save(this.article)
-            .then(newArticle => this.$state.go("app.article", {id: newArticle._id}))
+            .then(newArticle => this.$state.go("app.article-list"))
             .catch(err => this.errors = err.data.errors )
             .finally(() => this.isSubmitting = false );
     };

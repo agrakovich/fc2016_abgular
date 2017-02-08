@@ -3,30 +3,29 @@ const passport = require('express');
 const ArticleModel = require('../models/article');
 const articleRoutes = express.Router();
 
-articleRoutes.get('/', function(req, res) {
-    let isError = false;
+articleRoutes.get('/', function(req, res, next) {
+
+    if (!req.xhr)
+        return next();
+
+    console.log(req.query);
     let articlesCount = 0;
     let articles = [];
-
     var query = ArticleModel.find({});
-    query.count(function(err, count) {
-        if (err) {
-            res.statusCode = 500;
-            return res.send({ error: 'Server error' });
-        } else {
-            articlesCount = count;
-        }
-    });
-    query.skip(req.offset).limit(req.limit).exec('find', function(err, data) {
-        articles = data;
-        if(isError){
-            res.statusCode = 500;
-            return res.send({ error: 'Server error' });
-        }
 
-        return res.send({
-            articlesCount,
-            articles
+    query.find({}).skip(parseInt(req.query.offset)).limit(parseInt(req.query.limit)).exec('find', function(err, data) {
+        articles = data;
+        ArticleModel.count(function(err, count) {
+            if (err) {
+                res.statusCode = 500;
+                return res.send({ error: 'Server error' });
+            } else {
+                articlesCount = count;
+                return res.send({
+                    articlesCount,
+                    articles
+                });
+            }
         });
     });
 });

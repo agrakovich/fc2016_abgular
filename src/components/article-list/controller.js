@@ -34,7 +34,7 @@ export default class ArticleListCtrl {
         }
 
         if (!this.limit) {
-            this.limit = 10;
+            this.limit = 5;
         }
         queryConfig.filters.offset = (this.limit * (this.listConfig.currentPage - 1));
         queryConfig.filters.limit = this.limit;

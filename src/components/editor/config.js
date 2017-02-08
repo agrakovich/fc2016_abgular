@@ -7,34 +7,40 @@ const EditorConfig = $stateProvider => {
         controller: "EditorCtrl",
         controllerAs: "$ctrl",
         //templateUrl: "./template.html",
-        template: `<list-errors errors="$ctrl.errors"></list-errors>
-                        <form>
-                            <fieldset ng-disabled="$ctrl.isSubmitting">
-                                <fieldset>
-                                    <label>Title
-                                        <input name="title" ng-model="$ctrl.article.title" />
-                                    </label>
-                                </fieldset>
-                                <fieldset>
-                                    <label>Author
-                                        <input name="author" ng-model="$ctrl.article.author" />
-                                    </label>
-                                </fieldset>
-                                <fieldset>
-                                    <label>Text
-                                        <textarea name="text" ng-model="$ctrl.article.text"></textarea>
-                                    </label>
-                                </fieldset>
-                                <button type="button" ng-click="$ctrl.submit()">Publish</button>
-                            </fieldset>
-                        </form>`,
+        template: `<form name="articleForm" novalidate>
+    <fieldset ng-disabled="$ctrl.isSubmitting">
+        <fieldset>
+            <label>Title
+                <input name="title" ng-model="$ctrl.article.title" required/>
+                <p ng-show="articleForm.title.$invalid && !articleForm.title.$pristine">Title is required!</p>
+            </label>
+        </fieldset>
+        <fieldset>
+            <label>Author
+                <input name="author" ng-model="$ctrl.article.author" required/>
+                <p ng-show="articleForm.author.$invalid && !articleForm.author.$pristine">Author is required!</p>
+            </label>
+        </fieldset>
+        <fieldset>
+            <label>Text
+                <textarea name="text" required ng-model="$ctrl.article.text" min-text-length="30"></textarea>
+                <p ng-show="articleForm.text.$error.isMinTextLength">Article text must be not less than 30 characters!</p>
+                <p ng-show="articleForm.text.$invalid && !articleForm.text.$pristine">Article text is required!</p>
+            </label>
+        </fieldset>
+        <button type="button" ng-disabled="articleForm.$invalid" ng-click="$ctrl.submit()">Publish</button>
+        <a ui-sref="app.article-list">
+            Home
+        </a>
+    </fieldset>
+</form>`,
         title: "Editor",
         resolve: {
-            article: (ArticleService, $state, $stateParams) => {
-                if($stateParams._id) {
-                    return ArticleService.get($stateParams._id)
+            article: (ArticleService, $state) => {
+                if($state.params && $state.params.id) {
+                    return ArticleService.get($state.params.id)
                         .then(article => {
-                           return article;
+                            return article;
                         }).catch(err => $state.go("app.notFound"));
                 } else {
                     return null;

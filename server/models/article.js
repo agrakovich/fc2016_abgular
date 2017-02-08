@@ -19,8 +19,4 @@ const Article = new Schema({
     dateModified: { type: Date, default: Date.now },
 });
 
-Article.virtual('slug').get(function () {
-    return this.id;
-});
-
 module.exports = mongoose.model('Article', Article);;

@@ -2,7 +2,7 @@
     Loading articles...
 </div>
 
-<a ui-sref="app.editor()">
+<a ui-sref="app.editor()" class="btn">
     Publish article
 </a>
 
@@ -10,7 +10,7 @@
     No articles are here... yet.
 </div>
 
-<article-preview article="article" ng-repeat="article in $ctrl.articles">
+<article-preview article="article" class="preview" ng-repeat="article in $ctrl.articles">
 </article-preview>
 
 <list-pagination total-pages="$ctrl.listConfig.totalPages" current-page="$ctrl.listConfig.currentPage" ng-hide="$ctrl.listConfig.totalPages <= 1">

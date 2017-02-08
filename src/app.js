@@ -1,18 +1,21 @@
 import angular from 'angular';
 import appRun from './app.run';
 import appConfig from './app.config';
+import './app.scss';
 import 'angular-ui-router';
-import './components/editor'
-import './components/article-list'
-import './components/article'
-import './services'
+import './components/editor';
+import './components/article-list';
+import './components/article';
+import './components/not-found';
+import './services';
 
 const requires = [
     'ui.router',
     'app.services',
     'app.article',
     'app.article-list',
-    'app.editor'
+    'app.editor',
+    'app.notFound',
 ];
 
 window.app = angular.module('app', requires);

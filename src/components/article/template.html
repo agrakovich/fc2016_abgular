@@ -1,18 +1,20 @@
-<div>
-    <div>
-        <h1 ng-bind="::$ctrl.article.title"></h1>
-    </div>
-    <div>
-        <div ng-bind="::$ctrl.article.text"></div>
-    </div>
-    <hr />
-    <span>
-        <a ui-sref="app.editor({ id: $ctrl.article._id })">
-          <i></i> Edit
-        </a>
+<head>
+    <link href='//fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Sanchez:400italic,400' rel='stylesheet' type='text/css'>
+</head>
+<span>
+    <a ui-sref="app.editor({ id: $ctrl.article._id })">
+      <i></i> Edit
+    </a>
 
-        <button ng-click="$ctrl.deleteArticle()">
-          <i></i> Delete
-        </button>
-    </span>
-</div>
+    <button ng-click="$ctrl.deleteArticle()">
+      <i></i> Delete
+    </button>
+</span>
+<article class="type-system-geometric">
+    <h1 ng-bind="::$ctrl.article.title"></h1>
+    <p ng-bind="::$ctrl.article.dateCreated" class="date"></p>
+    <p ng-bind="::$ctrl.article.text"></p>
+    <hr>
+    <p class="author">Author Name</p>
+</article>

@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
-    <div ui-view></div>
-    <script src="/assets/main.js"></script>
+    <div class="image-gradient-dynamic">
+        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
+        <div class="overlay"></div>
+        <div class="content">
+            <div ui-view></div>
+        </div>
+    </div>
+    <script src="./assets/main.js"></script>
 </body>
 </html>

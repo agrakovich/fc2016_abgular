@@ -7,6 +7,7 @@ const AppConfig = ($httpProvider, $stateProvider, $locationProvider, $urlRouterP
         template: '<ui-view/>'
     });
 
+    $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     $urlRouterProvider.otherwise('/');
 };
 

@@ -1,4 +1,6 @@
-import PaginationCtrl from './controller'
+import PaginationCtrl from './controller';
+import './styles.scss';
+
 const Pagination = {
     bindings: {
         totalPages: '=',
@@ -6,12 +8,11 @@ const Pagination = {
     },
     controller: PaginationCtrl,
     //templateUrl: './template.html'
-    template: `<nav>
+    template: `<div class="pagination">
     <ul>
-        <li ng-class="{active: pageNumber === $ctrl.currentPage }" ng-repeat="pageNumber in $ctrl.pageRange($ctrl.totalPages)" ng-click="$ctrl.changePage(pageNumber)">
-            <a href="">{{ pageNumber }}</a>
-        </li>
-    </ul>`
+        <li><a  ng-repeat="pageNumber in $ctrl.pageRange($ctrl.totalPages)" ng-click="$ctrl.changePage(pageNumber)">{{ pageNumber }}</a></li>
+    </ul>
+</div>`
 };
 
 export default Pagination;
