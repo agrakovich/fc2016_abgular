@@ -1,17 +1,16 @@
-<div ng-hide="!$ctrl.loading">
-    Loading articles...
-</div>
+<head>
+    <link href='//fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Sanchez:400italic,400' rel='stylesheet' type='text/css'>
+</head>
 
-<a ui-sref="app.editor()" class="btn">
-    Publish article
-</a>
 
-<div ng-show="!$ctrl.loading && (!$ctrl.articles || !$ctrl.articles.length)">
+<div ng-show='!$ctrl.loading && (!$ctrl.articles || !$ctrl.articles.length)'>
     No articles are here... yet.
 </div>
 
-<article-preview article="article" class="preview" ng-repeat="article in $ctrl.articles">
-</article-preview>
-
-<list-pagination total-pages="$ctrl.listConfig.totalPages" current-page="$ctrl.listConfig.currentPage" ng-hide="$ctrl.listConfig.totalPages <= 1">
+<div class='article-list'>
+    <article-preview article='article' ng-repeat='article in $ctrl.articles'>
+    </article-preview>
+</div>
+<list-pagination total-pages='$ctrl.listConfig.totalPages' current-page='$ctrl.listConfig.currentPage' ng-hide='$ctrl.listConfig.totalPages <= 1'>
 </list-pagination>

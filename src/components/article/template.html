@@ -2,19 +2,19 @@
     <link href='//fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Sanchez:400italic,400' rel='stylesheet' type='text/css'>
 </head>
-<span>
-    <a ui-sref="app.editor({ id: $ctrl.article._id })">
-      <i></i> Edit
-    </a>
+<div class="article-view">
+    <div class="article-actions">
+        <a class="button-article-action" ui-sref="app.editor({ id: $ctrl.article._id })">
+          <i></i> Edit
+        </a>
 
-    <button ng-click="$ctrl.deleteArticle()">
-      <i></i> Delete
-    </button>
-</span>
-<article class="type-system-geometric">
-    <h1 ng-bind="::$ctrl.article.title"></h1>
-    <p ng-bind="::$ctrl.article.dateCreated" class="date"></p>
-    <p ng-bind="::$ctrl.article.text"></p>
-    <hr>
-    <p class="author">Author Name</p>
-</article>
+        <button class="button-article-action" ng-click="$ctrl.deleteArticle()">Delete</button>
+    </div>
+    <article class="type-system-geometric">
+        <h1 ng-bind="::$ctrl.article.title"></h1>
+        <p ng-bind="::$ctrl.article.dateCreated | date:'medium'" class="date"></p>
+        <div ta-bind ng-model="$ctrl.article.text"></div>
+        <hr>
+        <p class="author" ng-bind="::$ctrl.article.author"></p>
+    </article>
+</div>

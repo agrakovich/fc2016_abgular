@@ -1,78 +1,177 @@
-@import "bourbon";
-@import "neat";
+@import 'bourbon';
+@import 'neat';
 
-header{
-  height: 40px;
+$medium-screen: 40em !default;
+$sans-serif: 'Questrial', sans-serif;
+$serif: 'Sanchez', serif;
+$texture-top-background: lighten(#1c2b42, 1%);
+$texture-bottom-background: darken(#ffffff, 10%);
+@mixin texture($gradient-angle, $bg-color-1, $bg-color-2, $texture-number, $inverted) { $texture-list:
+        "paper.png"             // Fabric and paper
+        "rice_paper.png"
+        "noise_lines.png"
+        "fabric_plaid.png"
+        "first_aid_kit.png"
+        "texturetastic_gray.png"
+        "lil_fiber.png"
+        "tex2res5.png"
+        "skin_side_up.png"
+        "light_noise_diagonal.png"
+        "chruch.png"
+        "45degreee_fabric.png"
+        "bgnoise_lg.png"
+        "little_pluses.png"
+        "squairy_light.png"
+        "white_texture.png"
+        "binding_light.png"
+        "double_lined.png"      // Grid, mesh and squares
+        "grid.png"
+        "absurdidad.png"
+        "grid_noise.png"
+        "fancy_deboss.png"
+        "graphy.png"
+        "noise_pattern_with_crosslines.png"
+        "old_mathematics.png"
+        "ps_neutral.png"
+        "subtle_freckles.png"
+        "wavegrid.png"
+        "az_subtle.png"
+        "tiny_grid.png"
+        "wavegrid.png"
+        "gridme.png"
+        "noisy_grid.png"
+        "subtlenet2.png"
+        "white_carbon.png"
+        "lghtmesh.png"
+        "p5.png"                 // Dots
+        "worn_dots.png"
+        "subtle_dots.png"
+        "brillant.png"
+        "farmer.png"
+        "retina_dust.png"        // Lines
+        "pinstripe.png"
+        "line_horizontal1.png"
+        "line_horizontal2.png"
+        "linen.png"
+        "vintage_speckles.png"   // Patina and irregular
+        "subtle_grunge.png"
+        "old_wall.png"
+        "brushed.png"
+        "stucco.png"
+        "mooning.png"
+        "husk.png"
+        "concrete_wall_2.png"
+        "noisy.png"
+        "concrete_wall_3.png"
+        "subtle_surface.png"
+        "dust.png"
+        "light_alu.png"
+        "corrugation.png"
+        "kindajean.png"           // Diagonal
+        "line_diagonal1.png"
+        "line_diagonal2.png"
+        "groovepaper.png"
+        "brushed_alu.png"
+        "rough_diagonal.png"
+        "diagonal-noise.png"
+        "cross_scratches.png"
+        "striped_lens.png"
+        "debut_light.png"
+        "diagonal_waves.png"    // Special
+        "honey_im_subtle.png"
+        "pw_maze_white.png"
+        "subtle_zebra_3d.png"
+        "white_wave.png"
+        "circles.png"
+        "crosses.png"
+        "grilled.png"
+        "pw_pattern.png"
+        "struckaxiom.png"
+        "vichy.png"
+        "wavecut.png"
+        "whitey.png"
+        "cream_pixels.png"
+        "grey.png"
+        "shinedotted.png"
+        "stacked_circles.png"
+        "noisy_grid_simple.png";
+  background: url("https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/textures/#{nth($texture-list, $texture-number)}"),
+  linear-gradient($gradient-angle, $bg-color-1, $bg-color-2),
+  center no-repeat $bg-color-1 scroll;
+
 }
-fieldset{
-  border: none;
+
+.button-article-action, .button-publish{
+  @include margin(5px);
+  @include button(simple,#464646);
+  border: 1px solid #f5f5f5;
+  color:#f5f5f5;
+  text-align:center;
+  text-decoration:none;
+  font-size:15px;
+  //font-weight:bold;
+
+  &:hover{
+    background: #262626;
+  }
 }
-.image-gradient-dynamic {
-  $image-gradient-color-top: red;
-  $transparency-top: 0.9;
-  $image-gradient-color-bottom: green;
-  $transparency-bottom: 0.6;
-  $vertical-angle: 0deg;
-  $image-gradient-color-left: teal;
-  $transparency-left: 0.8;
-  $image-gradient-color-right: yellow;
-  $transparency-right: 0.8;
-  $horizontal-angle: 90deg;
 
-  line-height: 0;
-  position: relative;
-  width: 100%;
+.main-header {
+  height: 80px;
 
-  img {
-    height: auto;
-    left: 0;
-    position: relative;
-    top: 0;
-    width: 100%;
-  }
+  .button-circle {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border: 1px solid #f5f5f5;
+    border-radius: 50%;
+    color: #f5f5f5;
+    text-align: center;
+    text-decoration: none;
+    background: #464646;
+    box-shadow: 0 0 3px gray;
+    font-size: 20px;
+    font-weight: bold;
 
-  .content {
-    left: 50%;
-    margin: auto;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-
-    //p {
-    //  color: white;
-    //  line-height: 1.5em;
-    //  padding: 1em 2em;
-    //  position: relative;
-    //}
-  }
-
-  .overlay {
-    @include position(absolute, 0);
-    background-color: transparentize(
-                    $image-gradient-color-top,
-                    $transparency-top
-    );
-    background-image: linear-gradient($vertical-angle,
-            transparentize($image-gradient-color-top, $transparency-top),
-            transparentize($image-gradient-color-bottom, $transparency-bottom)
-    );
-    display: block;
-
-    &::after {
-      @include position(absolute, 0);
-      background-color: transparentize(
-                      $image-gradient-color-left,
-                      $transparency-right
-      );
-      background-image: linear-gradient($horizontal-angle,
-              transparentize($image-gradient-color-left, $transparency-left),
-              transparentize($image-gradient-color-right, $transparency-right)
-      );
-      content: "";
-      display: block;
+    &:hover {
+      background: #262626;
+      text-decoration: none;
+      color: #f5f5f5;
     }
   }
+
+  .button-home, .button-post{
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  .button-post {
+    position: absolute;
+  }
+
+  .tagline{
+    font-family: $serif;
+    font-size: 3.0em;
+    color: #ffffff;
+    font-weight: 900;
+    margin: 0 auto;
+    margin-left: 200px;
+  }
+}
+
+
+.wrapper {
+  @include linear-gradient(180deg, $texture-bottom-background, $texture-top-background);
+  width:100%;
+  min-height:100vh;
+}
+
+.container {
+  background-color: white;
+  width: 85%;
+  min-height:100vh;
+  position:relative;
+  margin: 0 auto;
+  text-align:left;
+  @include texture(180deg, $texture-top-background, $texture-bottom-background, 67, 1);
 }

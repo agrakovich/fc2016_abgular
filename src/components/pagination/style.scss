@@ -1,5 +1,5 @@
-@import "bourbon";
-@import "neat";
+@import 'bourbon';
+@import 'neat';
 
 .pagination {
   $base-border-color: gainsboro !default;
@@ -51,7 +51,7 @@
       padding: ($base-spacing / 4) ($gutter / 2);
       text-decoration: none;
       transition: all 0.2s ease-in-out;
-
+      margin-right: 5px;
       &:hover,
       &:focus {
         background: $pagination-hover-background;

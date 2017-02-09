@@ -49,6 +49,7 @@ app.get('/auth', function(req, res) {
     res.sendFile(path.join(__dirname, '..', 'index.html'));
 })
 
+app.use(express.static(path.join(__dirname, '..', 'src')));
 
 app.use(function(req, res, next){
     res.status(404);
@@ -60,7 +61,7 @@ app.use(function(req, res, next){
 
 app.use(function(err, req, res, next){
     res.status(err.status || 500);
-    console.log(`Internal error(${res.statusCode} : ${err.message}`);
+    console.log(`Internal error(${res.statusCode} : ${err.message})`);
     res.sendFile(path.join(__dirname, '..', '500.html'));
     return;
 });

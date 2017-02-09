@@ -1,4 +1,4 @@
-const AppRun = ($rootScope) => {
+const AppRun = ($rootScope, $state) => {
     "ngInject";
 
     $rootScope.$on("$stateChangeSuccess", (event, toState) => $rootScope.setPageTitle(toState.title));
@@ -11,6 +11,8 @@ const AppRun = ($rootScope) => {
             $rootScope.pageTitle += " \u2014 ";
         }
     };
+
+    $rootScope.$state = $state;
 
 };
 

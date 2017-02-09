@@ -1,7 +1,7 @@
-<div class="preview">
-    <p class="title" ng-bind="$ctrl.article.title"></p>
-    <p class="author" ng-bind="$ctrl.article.author"></p>
-    <a ui-sref="app.article({ id: $ctrl.article._id })">
-        <p>Read more...</p>
-    </a>
-</div>
+<article class='article type-system-geometric'>
+    <p class='author' ng-bind='::$ctrl.article.author'></p>
+    <h1 ng-bind='::$ctrl.article.title'></h1>
+    <p class='date' ng-bind='::$ctrl.article.dateCreated | date:"medium"'></p>
+    <p><a ui-sref='app.article({ id: $ctrl.article._id })' class='read-more'>Read More <span>&rsaquo;</span></a></p>
+    <hr>
+</article>

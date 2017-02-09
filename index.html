@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Awesome blog</title>
 </head>
-<body>
-    <header>
-        <a ui-sref="app.article-list" class="tooltip-item">
-            Home
-        </a>
-    </header>
-    <div class="image-gradient-dynamic">
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png" alt="">
-        <div class="overlay"></div>
-        <div class="content">
-            <div ui-view></div>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <header class="main-header">
+                    <a ui-sref="app.article-list" class="button-circle button-home">
+                        Home
+                    </a>
+                    <a ng-if="$state.is('app.article-list')" ui-sref='app.editor()' class="button-circle button-post">
+                        Post
+                    </a>
+                    <span class="tagline">Read along with us</span>
+                </header>
+                <div ui-view></div>
+            </div>
         </div>
-    </div>
-    <script src="./assets/main.js"></script>
-</body>
+        <script src="./assets/main.js"></script>
+    </body>
 </html>

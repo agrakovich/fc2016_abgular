@@ -2,6 +2,7 @@ import angular from "angular";
 import EditorConfig from "./config";
 import EditorCtrl from "./controller";
 import MinTextLengthDirective from "../../directives/minTextLength";
+import './style.scss'
 
 const editorModule = angular.module("app.editor", []);
 
