@@ -1,5 +1,5 @@
 export default {
-    apiUrl: 'https://filmsdemo.herokuapp.com'
+    apiUrl: 'https://fcamp2016.herokuapp.com'
     //apiUrl: 'http://localhost:3000',
     authRoute: '/auth',
     articlesRoute: '/articles'
