@@ -21,7 +21,7 @@ export default class ArticleService {
             request.method = 'POST';
         }
 
-        request.data = { ...article };
+        request.data = Object.assign({}, article);
         return this.$http(request)
             .then(res => res.data.article);
     };

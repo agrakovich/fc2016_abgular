@@ -1,4 +1,16 @@
 {
   "presets": ["es2015", "stage-0"], //поддержка ES2015, ES7
-  "plugins": ["angularjs-annotate"]
+  "plugins": ["angularjs-annotate"],
+  "env": {
+    "test": {
+      "plugins": [
+        ["istanbul", {
+          "exclude": [
+            "**/spec.js"
+          ]
+        }]
+      ]
+    }
+  }
+
 }
