@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require('express');
 const passport = require('express');
 const ArticleModel = require('../models/article');

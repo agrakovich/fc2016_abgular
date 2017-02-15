@@ -1,3 +1,5 @@
+"use strict";
+
 import angular from 'angular';
 import appRun from './app.run';
 import appConfig from './app.config';

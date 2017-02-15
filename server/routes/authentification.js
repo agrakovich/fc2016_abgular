@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require('express');
 const UserModel = require('../models/authentification').UserModel;
 const authRoutes = express.Router();

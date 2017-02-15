@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router'
 
 describe('ArticleModule', () => {
 
+    "ngInject";
     let $rootScope, $state, $location, $componentController, $compile, $timeout, $q, MockArticleService;
 
     beforeEach(window.module(ArticleModule, uiRouter));

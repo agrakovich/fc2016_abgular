@@ -1,7 +1,9 @@
+"use strict";
+
+
 const ArticleConfig = $stateProvider => {
 
-    'ngInject';
-
+    "ngInject"
     $stateProvider.state('app.article', {
         url: '/article/:id',
         controller: 'ArticleCtrl',

@@ -1,3 +1,5 @@
+"use strict";
+
 const express     = require('express');
 const app         = express();
 const bodyParser  = require('body-parser'); // стандартный модуль, для парсинга JSON в запросах
