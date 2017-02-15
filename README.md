@@ -12,4 +12,4 @@ npm start
 
 #Run tests
 
-test:single
+npm run test:single
