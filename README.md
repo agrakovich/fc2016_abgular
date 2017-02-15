@@ -11,5 +11,5 @@ npm install
 npm start
 
 #Run tests
-debug conf : test:debug
-single conf : test:single
+
+test:single
