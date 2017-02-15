@@ -14,7 +14,7 @@ describe('NotFoundModule', () => {
         $timeout = $injector.get('$timeout');
     }));
 
-    describe('Module', () => {
+    describe('NotFoundModule', () => {
         it('NotFoundModule component should be visible when navigates to /404', () => {
             $location.url('/404');
             $rootScope.$digest();

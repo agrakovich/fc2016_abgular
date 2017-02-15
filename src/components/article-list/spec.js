@@ -1,15 +1,14 @@
 import ArticleListModule from './index'
-import ArticleDataService from '../../services/articleService'
+import ArticleListController from './controller'
 import uiRouter from 'angular-ui-router'
 
 describe('ArticleList', () => {
 
-    let $rootScope, $state, $location, $componentController, $compile, $timeout, $q, ArticleService;
+    let $rootScope, $state, $location, $componentController, $compile, $timeout, $q, MockArticleService;
 
     beforeEach(window.module(ArticleListModule, uiRouter));
 
     beforeEach(inject(($injector) => {
-        let ArticleService = new ArticleDataService();
         $rootScope = $injector.get('$rootScope');
         $componentController = $injector.get('$componentController');
         $state = $injector.get('$state');
@@ -17,12 +16,9 @@ describe('ArticleList', () => {
         $compile = $injector.get('$compile');
         $timeout = $injector.get('$timeout');
         $q = $injector.get('$q');
-        spyOn(ArticleService, 'query').and.callFake(function(){
-            arguments[0].success({items:[{name:1},{name:2},{name:3},{name:4},{name:5}], itemsCount: 11});
-        });
     }));
 
-    describe('Module', () => {
+    describe('ArticleListModule', () => {
         it('default component should be ArticleList', () => {
             $location.url('/');
             $rootScope.$digest();
@@ -32,19 +28,33 @@ describe('ArticleList', () => {
         });
     });
 
-    describe('Controller', () => {
+    describe('ArticleListController', () => {
 
+        // controller specs
         let controller;
         beforeEach(() => {
-            controller = $componentController('app.article-list', {
-                $scope: $rootScope.$new(),
-                ArticleService: ArticleService
+            MockArticleService = {
+                query: () => {}
+            }
+
+            spyOn(MockArticleService, 'query').and.callFake(function(){
+                const deferred = $q.defer();
+                deferred.resolve({articlesCount:2, articles:[{_id:"589c67000d17af00115e7b08", title:"123",author:"123",text:"123", dateCreated:"2017-02-09T12:56:32.952Z"}]});
+                return deferred.promise;
             });
+
+            let $scope = $rootScope.$new();
+            controller = new ArticleListController(MockArticleService, $scope);
+            spyOn(controller, 'runQuery');
         });
 
-        it('controller init should call setListTo', () => { // erase if removing this.name from the controller
-            controller.$onInit();
-            expect(ArticleService.query).toHaveBeenCalled();
+        it('controller init should make initial request', () => {
+            expect(MockArticleService.query).toHaveBeenCalled();
+        });
+
+        it('controller setPageTo should call runQuery', () => {
+            controller.setPageTo(2);
+            expect(controller.runQuery.calls.count()).toEqual(1);
         });
     });
 });
