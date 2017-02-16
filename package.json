@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "test:single": "karma start karma.conf.js --single-run --browsers Chrome",
+    "test:single": "karma start karma.conf.js --single-run --browsers Firefox",
     "test:debug": "karma start karma.conf.js --log-level debug"
   },
   "author": "",
@@ -70,6 +70,7 @@
     "karma-babel-preprocessor": "^6.0.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-coverage": "^1.1.1",
+    "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.1.0",
     "karma-ng-html2js-preprocessor": "^1.0.0",
     "karma-phantomjs-launcher": "^1.0.2",

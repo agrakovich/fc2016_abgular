@@ -24,10 +24,10 @@ module.exports = function(config) {
         //{ pattern: 'src/**/!(spec|*.mock|*-mock|*.e2e|*.po|*.test).js', watched: false },
     ],
 
-      preprocessors: {
-          'spec.bundle.js': ['webpack', 'sourcemap'],
-          'src/**/!(spec|*.mock|*-mock|*.e2e|*.po|*.test).js': ['webpack', 'coverage']
-      },
+	preprocessors: {
+	  'spec.bundle.js': ['webpack', 'sourcemap'],
+	  'src/**/!(spec|*.mock|*-mock|*.e2e|*.po|*.test).js': ['webpack', 'coverage']
+	},
 
 
 
@@ -39,6 +39,8 @@ module.exports = function(config) {
       require("karma-webpack"),
       require("karma-jasmine"),
       require("karma-chrome-launcher"),
+	  require("karma-phantomjs-launcher"),
+	  require("karma-firefox-launcher"),
       require("karma-sourcemap-loader"),
       require("karma-babel-preprocessor"),
       require("karma-ng-html2js-preprocessor"),
@@ -114,7 +116,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Firefox'],
 
 
     // Continuous Integration mode
